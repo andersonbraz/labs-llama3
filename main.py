@@ -1,14 +1,13 @@
-
 import logging
 from pathlib import Path
 from typing import List
 
 from langchain_community.document_loaders import PyPDFDirectoryLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.llms import HuggingFacePipeline
-from langchain.chains import RetrievalQA
+from langchain_community.chains import RetrievalQA
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
 # Configuração de logging
@@ -74,7 +73,7 @@ def main() -> None:
         logger.info(f"Pergunta: {question}")
         
         # Resposta
-        result = qa_chain.invoke({"query": question})  # Atualizado para .invoke
+        result = qa_chain.invoke({"query": question})
         answer = result["result"]
         sources = result["source_documents"]
         
